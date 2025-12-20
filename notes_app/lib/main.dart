@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:notes_app/helper/constants.dart';
 import 'package:notes_app/views/edit_note_view.dart';
 import 'package:notes_app/views/notes_view.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
+  await Hive.openBox(kNotesBox);
   runApp(const NotesApp());
 }
 
@@ -57,9 +60,7 @@ class NotesApp extends StatelessWidget {
           ),
         ),
       ),
-      routes: {
-        EditNoteView.id: (context) => const EditNoteView(),
-      },
+      routes: {EditNoteView.id: (context) => const EditNoteView()},
       home: Scaffold(body: Center(child: NotesView())),
     );
   }
