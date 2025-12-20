@@ -29,7 +29,11 @@ class NotesApp extends StatelessWidget {
         fontFamily: 'Poppins',
         inputDecorationTheme: InputDecorationTheme(
           contentPadding: EdgeInsets.all(16.0),
-
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0)),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8.0),
+            borderSide: BorderSide(color: Colors.red),
+          ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.0),
             borderSide: BorderSide(color: Colors.white),
