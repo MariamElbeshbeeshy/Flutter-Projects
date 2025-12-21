@@ -3,11 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:notes_app/cubits/add_note_cubit/add_note_cubit.dart';
 import 'package:notes_app/helper/constants.dart';
+import 'package:notes_app/helper/simple_bloc_observer.dart';
 import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/views/edit_note_view.dart';
 import 'package:notes_app/views/notes_view.dart';
 
 void main() async {
+  Bloc.observer = SimpleBlocObserver();
   await Hive.initFlutter();
   await Hive.openBox(kNotesBox);
   Hive.registerAdapter(NoteModelAdapter());
@@ -20,14 +22,12 @@ class NotesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (context)=>AddNoteCubit()),
-      ],
+      providers: [BlocProvider(create: (context) => AddNoteCubit())],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           useMaterial3: true,
-      
+
           brightness: Brightness.dark,
           scaffoldBackgroundColor: kDarkBackgroundColor,
           appBarTheme: AppBarTheme(
@@ -37,7 +37,9 @@ class NotesApp extends StatelessWidget {
           fontFamily: 'Poppins',
           inputDecorationTheme: InputDecorationTheme(
             contentPadding: EdgeInsets.all(16.0),
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0)),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8.0),
+            ),
             errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8.0),
               borderSide: BorderSide(color: Colors.red),
@@ -55,7 +57,9 @@ class NotesApp extends StatelessWidget {
           textSelectionTheme: const TextSelectionThemeData(
             cursorColor: kPrimaryColor,
           ),
-          textTheme: const TextTheme(titleMedium: TextStyle(color: Colors.black)),
+          textTheme: const TextTheme(
+            titleMedium: TextStyle(color: Colors.black),
+          ),
           outlinedButtonTheme: OutlinedButtonThemeData(
             style: OutlinedButton.styleFrom(
               textStyle: const TextStyle(
