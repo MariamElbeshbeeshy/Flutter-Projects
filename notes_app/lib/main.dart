@@ -11,8 +11,8 @@ import 'package:notes_app/views/notes_view.dart';
 void main() async {
   Bloc.observer = SimpleBlocObserver();
   await Hive.initFlutter();
-  await Hive.openBox(kNotesBox);
   Hive.registerAdapter(NoteModelAdapter());
+  await Hive.openBox<NoteModel>(kNotesBox);
   runApp(const NotesApp());
 }
 
@@ -21,64 +21,57 @@ class NotesApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [BlocProvider(create: (context) => AddNoteCubit())],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          useMaterial3: true,
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        useMaterial3: true,
 
-          brightness: Brightness.dark,
-          scaffoldBackgroundColor: kDarkBackgroundColor,
-          appBarTheme: AppBarTheme(
-            backgroundColor: kDarkBackgroundColor,
-            foregroundColor: Colors.white,
+        brightness: Brightness.dark,
+        scaffoldBackgroundColor: kDarkBackgroundColor,
+        appBarTheme: AppBarTheme(
+          backgroundColor: kDarkBackgroundColor,
+          foregroundColor: Colors.white,
+        ),
+        fontFamily: 'Poppins',
+        inputDecorationTheme: InputDecorationTheme(
+          contentPadding: EdgeInsets.all(16.0),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0)),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8.0),
+            borderSide: BorderSide(color: Colors.red),
           ),
-          fontFamily: 'Poppins',
-          inputDecorationTheme: InputDecorationTheme(
-            contentPadding: EdgeInsets.all(16.0),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8.0),
-            ),
-            errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8.0),
-              borderSide: BorderSide(color: Colors.red),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8.0),
-              borderSide: BorderSide(color: Colors.white),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8.0),
-              borderSide: BorderSide(color: kPrimaryColor),
-            ),
-            hintStyle: TextStyle(color: Colors.grey[400]),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8.0),
+            borderSide: BorderSide(color: Colors.white),
           ),
-          textSelectionTheme: const TextSelectionThemeData(
-            cursorColor: kPrimaryColor,
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8.0),
+            borderSide: BorderSide(color: kPrimaryColor),
           ),
-          textTheme: const TextTheme(
-            titleMedium: TextStyle(color: Colors.black),
-          ),
-          outlinedButtonTheme: OutlinedButtonThemeData(
-            style: OutlinedButton.styleFrom(
-              textStyle: const TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.normal,
-              ),
-              backgroundColor: kPrimaryColor,
-              foregroundColor: kSecondaryColor,
-              minimumSize: const Size.fromHeight(50),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-                side: BorderSide.none,
-              ),
+          hintStyle: TextStyle(color: Colors.grey[400]),
+        ),
+        textSelectionTheme: const TextSelectionThemeData(
+          cursorColor: kPrimaryColor,
+        ),
+        textTheme: const TextTheme(titleMedium: TextStyle(color: Colors.black)),
+        outlinedButtonTheme: OutlinedButtonThemeData(
+          style: OutlinedButton.styleFrom(
+            textStyle: const TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.normal,
+            ),
+            backgroundColor: kPrimaryColor,
+            foregroundColor: kSecondaryColor,
+            minimumSize: const Size.fromHeight(50),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+              side: BorderSide.none,
             ),
           ),
         ),
-        routes: {EditNoteView.id: (context) => const EditNoteView()},
-        home: Scaffold(body: Center(child: NotesView())),
       ),
+      routes: {EditNoteView.id: (context) => const EditNoteView()},
+      home: Scaffold(body: Center(child: NotesView())),
     );
   }
 }

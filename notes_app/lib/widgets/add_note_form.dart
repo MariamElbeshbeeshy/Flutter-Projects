@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_app/cubits/add_note_cubit/add_note_cubit.dart';
 import 'package:notes_app/helper/constants.dart';
+import 'package:notes_app/models/note_model.dart';
 
 class AddNoteForm extends StatefulWidget {
   const AddNoteForm({super.key});
@@ -9,8 +12,8 @@ class AddNoteForm extends StatefulWidget {
 }
 
 class _AddNoteFormState extends State<AddNoteForm> {
-  String? title;
-  String? content;
+  late String title;
+  late String content;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
 
@@ -29,7 +32,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                 return null;
               }
             },
-            onSaved: (newValue) => title = newValue,
+            onSaved: (newValue) => title = newValue!,
             decoration: const InputDecoration(hintText: 'Note Title'),
             style: const TextStyle(color: kPrimaryColor),
           ),
@@ -42,7 +45,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                 return null;
               }
             },
-            onSaved: (newValue) => content = newValue,
+            onSaved: (newValue) => content = newValue!,
             style: const TextStyle(color: kPrimaryColor),
             decoration: const InputDecoration(hintText: 'Content'),
             maxLines: 10,
@@ -53,6 +56,13 @@ class _AddNoteFormState extends State<AddNoteForm> {
             onPressed: () {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
+                NoteModel note = NoteModel(
+                  title: title,
+                  content: content,
+                  color: Colors.blue.value,
+                  createdAt: DateTime.now().toString(),
+                );
+                BlocProvider.of<AddNoteCubit>(context).addNote(note);
                 Navigator.pop(context);
               } else {
                 _autovalidateMode = AutovalidateMode.always;
