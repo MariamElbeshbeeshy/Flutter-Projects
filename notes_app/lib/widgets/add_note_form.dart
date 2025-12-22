@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:notes_app/cubits/add_note_cubit/add_note_cubit.dart';
 import 'package:notes_app/helper/constants.dart';
 import 'package:notes_app/models/note_model.dart';
@@ -54,6 +55,10 @@ class _AddNoteFormState extends State<AddNoteForm> {
 
           BlocBuilder<AddNoteCubit, AddNoteState>(
             builder: (context, state) {
+              DateTime currentDate = DateTime.now();
+              String formattedDate = DateFormat(
+                'dd MMM, yyyy',
+              ).format(currentDate);
               return OutlinedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
@@ -62,7 +67,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                       title: title,
                       content: content,
                       color: Colors.blue.value,
-                      createdAt: DateTime.now().toString(),
+                      createdAt: formattedDate,
                     );
                     BlocProvider.of<AddNoteCubit>(context).addNote(note);
                     Navigator.pop(context);

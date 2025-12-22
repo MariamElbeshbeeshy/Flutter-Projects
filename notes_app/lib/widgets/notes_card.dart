@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/models/note_model.dart';
 
 class NotesCard extends StatelessWidget {
-  const NotesCard({super.key});
+  final NoteModel note;
+  const NotesCard({super.key, required this.note});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class NotesCard extends StatelessWidget {
             ListTile(
               contentPadding: EdgeInsets.zero,
               title: Text(
-                "Note Title",
+                note.title,
                 style: TextStyle(
                   fontSize: 20.0,
                   fontWeight: FontWeight.bold,
@@ -31,7 +33,7 @@ class NotesCard extends StatelessWidget {
               subtitle: Padding(
                 padding: const EdgeInsets.only(top: 16.0),
                 child: Text(
-                  'This is a note card. You can add your notes here.',
+                  note.content,
                   maxLines: 3,
                   overflow: TextOverflow.fade,
                   style: TextStyle(
@@ -58,7 +60,7 @@ class NotesCard extends StatelessWidget {
               child: Align(
                 alignment: Alignment.bottomRight,
                 child: Text(
-                  '10 Dec 2025',
+                  note.createdAt,
                   style: TextStyle(
                     fontSize: 14.0,
                     color: const Color.fromARGB(221, 84, 83, 83),
