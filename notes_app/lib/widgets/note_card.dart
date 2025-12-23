@@ -55,7 +55,7 @@ class NoteCard extends StatelessWidget {
         width: double.infinity,
 
         decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 247, 223, 152),
+          color: Color(note.color),
           borderRadius: BorderRadius.circular(12.0),
         ),
         child: Column(

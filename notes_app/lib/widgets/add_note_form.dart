@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:notes_app/cubits/add_note_cubit/add_note_cubit.dart';
 import 'package:notes_app/helper/constants.dart';
 import 'package:notes_app/models/note_model.dart';
+import 'package:notes_app/widgets/colors_list_builder.dart';
 
 class AddNoteForm extends StatefulWidget {
   const AddNoteForm({super.key});
@@ -67,7 +68,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                     NoteModel note = NoteModel(
                       title: title,
                       content: content,
-                      color: Colors.blue.value,
+                      color: BlocProvider.of<AddNoteCubit>(context).color.value,
                       createdAt: formattedDate,
                     );
                     BlocProvider.of<AddNoteCubit>(context).addNote(note);
@@ -93,54 +94,6 @@ class _AddNoteFormState extends State<AddNoteForm> {
   }
 }
 
-class ColorsListBuilder extends StatefulWidget {
-  const ColorsListBuilder({super.key});
 
-  @override
-  State<ColorsListBuilder> createState() => _ColorsListBuilderState();
-}
 
-class _ColorsListBuilderState extends State<ColorsListBuilder> {
-  int? chosenIndex;
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 40,
-      child: ListView.builder(
-        itemCount: colors.length,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) => GestureDetector(
-          onTap: () {
-            setState(() {
-              chosenIndex = index;
-            });
-          },
-          child: ColorItem(
-            color: colors[index],
-            isActive: index == chosenIndex,
-          ),
-        ),
-      ),
-    );
-  }
-}
 
-class ColorItem extends StatelessWidget {
-  const ColorItem({super.key, required this.color, required this.isActive});
-  final Color color;
-  final bool isActive;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 8.0),
-      child: isActive
-          ? CircleAvatar(
-              backgroundColor: Colors.white,
-              radius: 20,
-              child: CircleAvatar(radius: 17, backgroundColor: color),
-            )
-          : CircleAvatar(radius: 20, backgroundColor: color),
-    );
-  }
-}

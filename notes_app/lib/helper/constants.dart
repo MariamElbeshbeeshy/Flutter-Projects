@@ -4,13 +4,12 @@ import 'package:flutter/material.dart';
 const Color kDarkBackgroundColor = Color.fromARGB(255, 40, 40, 40);
 const Color kPrimaryColor = Color(0xff99EDCC);
 const Color kSecondaryColor = Colors.black;
-const List<Color> colors = [
-  Color(0xff5CC8FF),
+const List<Color> kColors = [
   Color(0xffE8CCBF),
+  Color.fromARGB(255, 134, 214, 254),
   Color(0xff99EDCC),
-  Color(0xff7664C2),
-  Color(0xff401F3E)
-  
+  Color.fromARGB(255, 171, 154, 248),
+  Color.fromARGB(255, 249, 177, 244),
 ];
 //hive constants
 const String kNotesBox = 'notes_box';

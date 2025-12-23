@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:notes_app/helper/constants.dart';
 import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/widgets/custom_icon_button.dart';
+import 'package:notes_app/widgets/edit_color_list_builder.dart';
 
 class EditNoteView extends StatefulWidget {
   final NoteModel note;
@@ -50,6 +51,8 @@ class _EditNoteViewState extends State<EditNoteView> {
               decoration: InputDecoration(hintText: widget.note.content),
               maxLines: 10,
             ),
+            SizedBox(height: 16),
+            EditColorListBuilder(note: widget.note),
           ],
         ),
       ),
