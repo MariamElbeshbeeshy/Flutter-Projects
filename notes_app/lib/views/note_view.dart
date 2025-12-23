@@ -26,7 +26,7 @@ class NoteView extends StatelessWidget {
         title: Text('Notes'),
         actions: [CustomIconButton(icon: Icons.note, onPressed: () => {})],
       ),
-      body: NoteCard(note: note),
+      body: SingleChildScrollView(child: NoteCard(note: note)),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.pushNamed(context, EditNoteView.id, arguments: note);
