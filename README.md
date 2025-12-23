@@ -16,15 +16,15 @@ The following essential skills are applied and showcased across the internal pro
 
 ### 1. **State Management**
 * Application of different state management patterns to efficiently handle data flow and complex UI updates.
-* **[Add the specific library used]**: [e.g., Provider, BLoC, or GetX].
+* **Provider, BLoC/Cubit**
 
 ### 2. **Backend Integration and Data Handling**
 * **Firebase Services:** Experience with **Authentication** (User sign-in/up) and **Firestore** or **Realtime Database** (for real-time data, as seen in the Chat App).
 * **APIs & Network Calls:** Consuming external RESTful APIs, and fetching/parsing **JSON** data (as seen in the Weather and News Apps).
 
 ### 3. **Local Data Persistence**
+* **Hive (NoSQL):** Implementing high-performance local storage for objects and structured data with custom TypeAdapters (as seen in the Notes App).
 * **sqflite:** Building applications that rely on complex local database operations (CRUD) for offline functionality (as seen in the Notes App).
-* **Shared Preferences:** Storing simple user preferences and app settings.
 
 ### 4. **UI and Design**
 * Designing responsive User Interfaces (UI) that function seamlessly on both Android and iOS devices.
@@ -42,6 +42,7 @@ Below is a summary of the key projects contained within this repository:
 | **Weather App** | A comprehensive weather application for tracking cities and displaying live weather data. | **APIs, State Management, Navigation.** |
 | **Chat App** | A real-time messaging application demonstrating efficient data handling and user profiles. | **Firebase (Authentication, Firestore), Realtime Data.** |
 | **News App** | Fetches and displays a list of news articles from an external API source. | **APIs, JSON Parsing, ListViews.** |
+| **Notes App** | A productivity tool for managing personal notes with offline support and interactive animations. | **BLoC / Cubit** | **Hive (NoSQL), CRUD Operations, Swipe-to-Delete Animations.** |
 
 ---
 
