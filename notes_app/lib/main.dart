@@ -6,7 +6,8 @@ import 'package:notes_app/helper/constants.dart';
 import 'package:notes_app/helper/simple_bloc_observer.dart';
 import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/views/edit_note_view.dart';
-import 'package:notes_app/views/notes_view.dart';
+import 'package:notes_app/views/note_view.dart';
+import 'package:notes_app/views/notes_list_view.dart';
 
 void main() async {
   Bloc.observer = SimpleBlocObserver();
@@ -76,8 +77,11 @@ class NotesApp extends StatelessWidget {
             ),
           ),
         ),
-        routes: {EditNoteView.id: (context) => const EditNoteView()},
-        home: Scaffold(body: Center(child: NotesView())),
+        routes: {
+          EditNoteView.id: (context) => EditNoteView(note: ModalRoute.of(context)!.settings.arguments as NoteModel),
+          NoteView.id: (context) => NoteView(note: ModalRoute.of(context)!.settings.arguments as NoteModel),
+        },
+        home: Scaffold(body: Center(child: NotesListView())),
       ),
     );
   }

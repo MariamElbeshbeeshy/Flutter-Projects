@@ -4,8 +4,8 @@ import 'package:notes_app/widgets/add_note_bottom_sheet.dart';
 import 'package:notes_app/widgets/custom_icon_button.dart';
 import 'package:notes_app/widgets/notes_card_list_builder.dart';
 
-class NotesView extends StatelessWidget {
-  const NotesView({super.key});
+class NotesListView extends StatelessWidget {
+  const NotesListView({super.key});
 
   @override
   Widget build(BuildContext context) {
