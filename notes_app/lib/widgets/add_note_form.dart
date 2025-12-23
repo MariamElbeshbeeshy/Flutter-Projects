@@ -52,7 +52,8 @@ class _AddNoteFormState extends State<AddNoteForm> {
             maxLines: 10,
           ),
           const SizedBox(height: 16.0),
-
+          ColorsListBuilder(),
+          const SizedBox(height: 16.0),
           BlocBuilder<AddNoteCubit, AddNoteState>(
             builder: (context, state) {
               DateTime currentDate = DateTime.now();
@@ -88,6 +89,58 @@ class _AddNoteFormState extends State<AddNoteForm> {
           const SizedBox(height: 16.0),
         ],
       ),
+    );
+  }
+}
+
+class ColorsListBuilder extends StatefulWidget {
+  const ColorsListBuilder({super.key});
+
+  @override
+  State<ColorsListBuilder> createState() => _ColorsListBuilderState();
+}
+
+class _ColorsListBuilderState extends State<ColorsListBuilder> {
+  int? chosenIndex;
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 40,
+      child: ListView.builder(
+        itemCount: colors.length,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) => GestureDetector(
+          onTap: () {
+            setState(() {
+              chosenIndex = index;
+            });
+          },
+          child: ColorItem(
+            color: colors[index],
+            isActive: index == chosenIndex,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class ColorItem extends StatelessWidget {
+  const ColorItem({super.key, required this.color, required this.isActive});
+  final Color color;
+  final bool isActive;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 8.0),
+      child: isActive
+          ? CircleAvatar(
+              backgroundColor: Colors.white,
+              radius: 20,
+              child: CircleAvatar(radius: 17, backgroundColor: color),
+            )
+          : CircleAvatar(radius: 20, backgroundColor: color),
     );
   }
 }
