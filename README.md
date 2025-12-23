@@ -52,7 +52,7 @@ To run any individual project within this repository:
 
 1.  **Clone the repository:**
     ```bash
-    git clone [Your Repository Link]
+    git clone https://github.com/MariamElbeshbeeshy/Flutter-Projects.git
     ```
 2.  **Navigate to the desired project folder:**
     ```bash
