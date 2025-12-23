@@ -24,7 +24,7 @@ The **Notes App** is designed to help users capture their thoughts instantly. By
 
 Check out the app in action:
 
-> [🎬 Watch the App Demo Video here](YOUR_DRIVE_LINK_HERE)
+> [🎬 Watch the App Demo Video here](https://drive.google.com/file/d/1IHj9G1KxogIVPm3930GVnuhTaKaelpic/view?usp=sharing)
 
 ---
 
@@ -49,7 +49,7 @@ To get a local copy up and running, follow these steps:
 1. **Clone the repository:**
 
     ```bash
-    git clone [https://github.com/your-username/notes-app.git](https://drive.google.com/file/d/1IHj9G1KxogIVPm3930GVnuhTaKaelpic/view?usp=sharing)
+    git clone https://github.com/MariamElbeshbeeshy/Flutter-Projects.git
     ```
 
 2. **Install dependencies:**
